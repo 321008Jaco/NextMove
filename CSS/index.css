@@ -209,11 +209,17 @@ body {
     margin-bottom: 20px;
     width: 100%; /* Makes sure the cards occupy the same width */
     max-width: 300px; /* Adjusts the maximum width of the card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .card img {
     width: 100%;
     height: auto; /* Ensures image scaling */
+    max-height: 200px;
+    object-fit: cover;
 }
 
 .card-info {
@@ -221,6 +227,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: start; /* Aligns text to the left */
+    flex-grow: 1; /* Allow content to grow and take up space */
+    justify-content: space-between;
 }
 
 .card-info h3 {
@@ -244,7 +252,6 @@ body {
     font-size: 24px; /* Adjust icon size */
     margin-right: 10px;
 }
-
 
 .footer {
     background-color: #e9ecef;

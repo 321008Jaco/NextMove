@@ -4,6 +4,21 @@ if (!isset($_SESSION["user"])) {
     header("Location: Login.php");
     exit();
 }
+
+// Database connection
+require_once "database.php"; // Assuming you have a separate file for database connection
+
+// Query to get the first 3 properties
+$sql = "SELECT Title, State, Price, Bedrooms, Bathrooms, GarageSpace, SquareMeters, Address, City, ImageOne FROM properties WHERE PropertyID IN (1, 2, 3)";
+$result = mysqli_query($conn, $sql);
+
+// Fetch the properties
+$properties = [];
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $properties[] = $row;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +28,8 @@ if (!isset($_SESSION["user"])) {
     <title>Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./CSS/index.css">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 <nav class="navbar">
@@ -25,101 +42,74 @@ if (!isset($_SESSION["user"])) {
             </ul>
         </div>
         <a href="logout.php" class="btn btn-warning">Logout</a>
-    </nav>
+</nav>
 
-    <div class="hero-section">
-        <div class="overlay"></div>
-        <div class="content"></div>
+<div class="hero-section">
+    <div class="overlay"></div>
+    <div class="content"></div>
+</div>
+
+<div class="ceo">
+    <div class="ceo-contain">
+        <h1>Richard Thompson</h1>
+        <p>Richard Thompson is a visionary leader with over 20 years of experience in the real estate industry. As the CEO of Elysian Haven, he has transformed the company into a leading force in luxury property development, focusing on delivering dream homes with exceptional quality and design.</p>
+        <p>Under Richard's leadership, Elysian Haven continues to set new standards in real estate, making it the go-to choice for discerning homeowners.</p>
     </div>
+</div>
+<div class="ceo-img">
+    <img src="./Assets/Ceo.jpg" alt="Profile Image">
+</div>
 
-            <div class="ceo">
-                <div class="ceo-contain">
-                <h1>Richard Thompson</h1>
-                <p>Richard Thompson is a visionary leader with over 20 years of experience in the real estate industry. As the CEO of Elysian Haven, he has transformed the company into a leading force in luxury property development, focusing on delivering dream homes with exceptional quality and design.</p>
-                <p>Under Richard's leadership, Elysian Haven continues to set new standards in real estate, making it the go-to choice for discerning homeowners.</p>
-                </div>
-            </div>
-            <div class="ceo-img">
-                <img src="./Assets/Ceo.jpg" alt="Profile Image">
-            </div>
-
-    <div class="profile-section">
-        <div>
-            <h2>Tell us about your dream home</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-        <div class="d-flex justify-content-between mt-4">
-            <div class="img-button">
-                <img src="./Assets/Home.jpg" alt="Option 1" class="img-box rounded">
-                <p>Homes</p>
-            </div>
-            <div class="img-button">
-                <img src="./Assets/Apartment.jpg" alt="Option 2" class="img-box rounded">
-                <p>Apartments</p>
-            </div>
-            <div class="img-button">
-                <img src="./Assets/Office.jpg" alt="Option 3" class="img-box rounded">
-                <p>Offices</p>
-            </div>
-        </div>
+<div class="profile-section">
+    <div>
+        <h2>Tell us about your dream home</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </div>
-
-    <div class="showroom-section">
-    <div class="container">
-        <h2>View Our Showroom</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="path/to/showroom/image1.jpg" class="img-fluid" alt="Showroom Image 1">
-                    <div class="card-info">
-                        <h3>Title</h3>
-                        <p>State</p>
-                        <p>Price:</p>
-                        <div class="icons">
-                            <i class="bed-icon"></i>
-                            <i class="bath-icon"></i>
-                            <p>City & Address</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="path/to/showroom/image2.jpg" class="img-fluid" alt="Showroom Image 2">
-                    <div class="card-info">
-                        <h3>Title</h3>
-                        <p>State</p>
-                        <p>Price:</p>
-                        <div class="icons">
-                            <i class="bed-icon"></i>
-                            <i class="bath-icon"></i>
-                            <p>City & Address</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="path/to/showroom/image3.jpg" class="img-fluid" alt="Showroom Image 3">
-                    <div class="card-info">
-                        <h3>Title</h3>
-                        <p>State</p>
-                        <p>Price:</p>
-                        <div class="icons">
-                            <i class="bed-icon"></i>
-                            <i class="bath-icon"></i>
-                            <p>City & Address</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="d-flex justify-content-between mt-4">
+        <div class="img-button">
+            <img src="./Assets/Home.jpg" alt="Option 1" class="img-box rounded">
+            <p>Homes</p>
+        </div>
+        <div class="img-button">
+            <img src="./Assets/Apartment.jpg" alt="Option 2" class="img-box rounded">
+            <p>Apartments</p>
+        </div>
+        <div class="img-button">
+            <img src="./Assets/Office.jpg" alt="Option 3" class="img-box rounded">
+            <p>Offices</p>
         </div>
     </div>
 </div>
 
-
-    <div class="footer">
-        <p>Footer</p>
+<div class="showroom-section">
+    <div class="container">
+        <h2>View Our Showroom</h2>
+        <div class="row">
+            <?php foreach ($properties as $property): ?>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="<?php echo htmlspecialchars($property['ImageOne']); ?>" class="img-fluid" alt="Showroom Image">
+                    <div class="card-info">
+                        <h3><?php echo htmlspecialchars($property['Title']); ?></h3>
+                        <p><?php echo htmlspecialchars($property['State']); ?></p>
+                        <p>Price: <?php echo htmlspecialchars($property['Price']); ?></p>
+                        <div class="icons d-flex justify-content-between">
+                            <p><i class="fas fa-bed"></i> <?php echo htmlspecialchars($property['Bedrooms']); ?></p>
+                            <p><i class="fas fa-bath"></i> <?php echo htmlspecialchars($property['Bathrooms']); ?></p>
+                            <p><i class="fas fa-car"></i> <?php echo htmlspecialchars($property['GarageSpace']); ?></p>
+                            <p><i class="fas fa-ruler-combined"></i> <?php echo htmlspecialchars($property['SquareMeters']); ?> m²</p>
+                        </div>
+                        <p><?php echo htmlspecialchars($property['City'] . ', ' . $property['Address']); ?></p>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
     </div>
+</div>
+
+<div class="footer">
+    <p>Footer</p>
+</div>
 </body>
 </html>

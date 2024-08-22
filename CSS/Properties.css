@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     padding-top: 60px;
-    background-color: #f8f9fa;
+    background-color: #151616;
 }
 
 .navbar {
@@ -55,7 +55,7 @@ body {
 }
 
 .hero-section {
-    background-image: url('path/to/your/background/image.jpg');
+    background-image: url('../Assets/Header.jpg');
     background-size: cover;
     background-position: center;
     color: black;
@@ -83,7 +83,8 @@ body {
 
 .filter-section {
     padding: 30px;
-    background-color: #f1f1f1;
+    background-color: #141414;
+    color: white;
     text-align: center;
 }
 
@@ -121,21 +122,74 @@ body {
     font-weight: bold;
 }
 
+.filter-section .filter-group .btn {
+    margin-top: 5px; /* Adds a margin-top of 5px */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-section .filter-group .btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
 .properties-section {
     padding: 30px;
-    background-color: #fff;
+    background-color: #151616;
 }
 
 .property-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
+    grid-template-columns: repeat(3, 1fr); /* Ensures 3 cards in a row */
+    gap: 20px; /* Adjusts the gap between the cards */
+    padding: 20px;
+    justify-content: center;
+    margin-left: 225px;
 
 .property-card {
-    background-color: #e0e0e0;
-    height: 200px;
-    border-radius: 10px;
+    background-color: #333; /* Dark background color */
+    color: white; /* White text */
+    border-radius: 8px;
+    overflow: hidden; /* Prevents content overflow */
+    margin-bottom: 20px;
+    width: 280px; /* Adjusts the width of the cards */
+}
+
+.property-card img {
+    width: 100%;
+    height: auto; /* Ensures image scaling */
+}
+
+.card-info {
+    padding: 20px; /* Padding inside the card for text */
+    display: flex;
+    flex-direction: column;
+    align-items: start; /* Aligns text to the left */
+}
+
+.card-info h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-info p {
+    margin: 5px 0;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.icons i {
+    font-size: 24px; /* Adjust icon size */
+    margin-right: 10px;
 }
 
 footer {
