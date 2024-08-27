@@ -2,6 +2,7 @@
 session_start();
 if (isset($_SESSION["user"])) {
     header("Location: index.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -20,19 +21,22 @@ if (isset($_SESSION["user"])) {
             $email = $_POST["email"];
             $password = $_POST["password"];
             require_once "database.php";
-            $sql = "SELECT * FROM users WHERE email = '$email'";
-            $result = mysqli_query($conn, $sql);
+            $sql = "SELECT * FROM users WHERE email = ?";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "s", $email);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
             if ($user) {
                 if (password_verify($password, $user["password"])) {
-                    session_start();
-                    $_SESSION["user"] = "yes";
+                    // Store user type in session
+                    $_SESSION["user"] = $user["Type"];
                     header("Location: index.php");
                     die();
-                }else{
+                } else {
                     echo "<div class='alert alert-danger'>Password does not match</div>";
                 }
-            }else{
+            } else {
                 echo "<div class='alert alert-danger'>Email does not match</div>";
             }
         }
@@ -53,8 +57,8 @@ if (isset($_SESSION["user"])) {
         </form>
 
         <div class="logo">
-                <img src="./Assets/logo.png" alt="Logo"> <!-- Replace with the correct path to your logo image -->
-            </div>
+            <img src="./Assets/logo.png" alt="Logo"> <!-- Replace with the correct path to your logo image -->
+        </div>
 
     </div>
 </body>

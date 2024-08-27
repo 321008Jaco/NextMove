@@ -5,12 +5,27 @@ if (!isset($_SESSION["user"])) {
     exit();
 }
 
+// Debugging: Display the session variables
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
+
 // Database connection
 require_once "database.php"; // Assuming you have a separate file for database connection
+
+// Check if the connection is successful
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
 // Query to get the first 3 properties
 $sql = "SELECT Title, State, Price, Bedrooms, Bathrooms, GarageSpace, SquareMeters, Address, City, ImageOne FROM properties WHERE PropertyID IN (1, 2, 3)";
 $result = mysqli_query($conn, $sql);
+
+// Check if the query was successful
+if (!$result) {
+    die("Query failed: " . mysqli_error($conn));
+}
 
 // Fetch the properties
 $properties = [];
@@ -18,8 +33,11 @@ if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $properties[] = $row;
     }
+} else {
+    echo "<div class='alert alert-warning'>No properties found</div>";
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +57,9 @@ if (mysqli_num_rows($result) > 0) {
                 <li><a href="#">Home</a></li>
                 <li><a href="./Pages/Properties.php">Properties</a></li>
                 <li><a href="./Pages/Book.php">Book Agent</a></li>
+                <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
+                <li><a href="./Pages/AddProperty.php">Add Property</a></li>
+            <?php endif; ?>
             </ul>
         </div>
         <a href="logout.php" class="btn btn-warning">Logout</a>
@@ -85,6 +106,7 @@ if (mysqli_num_rows($result) > 0) {
     <div class="container">
         <h2>View Our Showroom</h2>
         <div class="row">
+            <?php if (!empty($properties)): ?>
             <?php foreach ($properties as $property): ?>
             <div class="col-md-4">
                 <div class="card">
@@ -104,6 +126,11 @@ if (mysqli_num_rows($result) > 0) {
                 </div>
             </div>
             <?php endforeach; ?>
+            <?php else: ?>
+            <div class="col-12">
+                <p>No properties found.</p>
+            </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>

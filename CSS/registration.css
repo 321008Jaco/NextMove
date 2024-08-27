@@ -58,6 +58,32 @@ h2 {
     font-size: 16px;
 }
 
+.user-type-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: -50px;
+    margin-bottom: 20px;
+}
+
+.user-type-label {
+    margin-right: 15px;
+    font-weight: 600;
+}
+
+.user-type-options {
+    display: flex;
+    gap: 15px;
+}
+
+.user-type-options label {
+    font-weight: 400;
+}
+
+.user-type-options input[type="radio"] {
+    margin-right: 5px;
+}
+
 .form-group input[type="text"]::placeholder,
 .form-group input[type="email"]::placeholder,
 .form-group input[type="password"]::placeholder {
