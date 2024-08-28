@@ -1,19 +1,13 @@
 <?php
 session_start();
 
-// Check if the user is logged in
-if (!isset($_SESSION["user"])) {
-    header("Location: Login.php"); // Redirect to login page if not logged in
-    exit();
-}
+// Debug: Print all session variables
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
 
-// Check if the user is an agent
-if ($_SESSION["user_type"] !== 'agent') {
-    header("Location: index.php"); // Redirect to homepage if not an agent
-    exit();
-}
+echo "User is an agent.";
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +16,6 @@ if ($_SESSION["user_type"] !== 'agent') {
     <title>Add Property</title>
 </head>
 <body>
-    
+    <h1>Add Property Page</h1>
 </body>
 </html>
