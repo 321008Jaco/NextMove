@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: Login.php");
+    header("Location: ../Login.php");
     exit();
 }
 
@@ -17,7 +17,7 @@ $minPrice = $_GET['min-price'] ?? '0';
 $maxPrice = $_GET['max-price'] ?? '25000000';
 
 // Build the SQL query with filtering options
-$sql = "SELECT Title, State, Price, Bedrooms, Bathrooms, GarageSpace, SquareMeters, Address, City, ImageOne 
+$sql = "SELECT PropertyID, Title, State, Price, Bedrooms, Bathrooms, GarageSpace, SquareMeters, Address, City, ImageOne 
         FROM properties 
         WHERE Price >= $minPrice AND Price <= $maxPrice";
 
@@ -51,8 +51,10 @@ if (mysqli_num_rows($result) > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Properties</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../CSS/Properties.css">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <nav class="navbar">
@@ -61,10 +63,10 @@ if (mysqli_num_rows($result) > 0) {
             <ul>
                 <li><a href="../index.php">Home</a></li>
                 <li><a href="#">Properties</a></li>
-                <li><a href="/Book.php">Book Agent</a></li>
+                <li><a href="../Book.php">Book Agent</a></li>
             </ul>
         </div>
-        <a href="logout.php" class="btn btn-warning">Logout</a>
+        <a href="../logout.php" class="btn btn-warning">Logout</a>
     </nav>
 
     <section class="hero-section">
@@ -135,24 +137,29 @@ if (mysqli_num_rows($result) > 0) {
     </section>
 
     <section class="properties-section">
-        <div class="property-grid">
-            <?php foreach ($properties as $property): ?>
-            <div class="property-card">
-                <img src="<?php echo htmlspecialchars($property['ImageOne']); ?>" class="img-fluid" alt="Property Image">
-                <div class="card-info">
-                    <h3><?php echo htmlspecialchars($property['Title']); ?></h3>
-                    <p><?php echo htmlspecialchars($property['State']); ?></p>
-                    <p>Price: <?php echo htmlspecialchars($property['Price']); ?></p>
-                    <div class="icons">
-                        <p><i class="fas fa-bed"></i> <?php echo htmlspecialchars($property['Bedrooms']); ?></p>
-                        <p><i class="fas fa-bath"></i> <?php echo htmlspecialchars($property['Bathrooms']); ?></p>
-                        <p><i class="fas fa-car"></i> <?php echo htmlspecialchars($property['GarageSpace']); ?></p>
-                        <p><i class="fas fa-ruler-combined"></i> <?php echo htmlspecialchars($property['SquareMeters']); ?> m²</p>
-                        <p><?php echo htmlspecialchars($property['City'] . ', ' . $property['Address']); ?></p>
+        <div class="container">
+            <div class="row">
+                <?php foreach ($properties as $property): ?>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="<?php echo htmlspecialchars($property['ImageOne']); ?>" class="img-fluid" alt="Property Image">
+                        <div class="card-info">
+                            <h3><?php echo htmlspecialchars($property['Title']); ?></h3>
+                            <p><?php echo htmlspecialchars($property['State']); ?></p>
+                            <p>Price: <?php echo htmlspecialchars($property['Price']); ?></p>
+                            <div class="icons d-flex justify-content-between">
+                                <p><i class="fas fa-bed"></i> <?php echo htmlspecialchars($property['Bedrooms']); ?></p>
+                                <p><i class="fas fa-bath"></i> <?php echo htmlspecialchars($property['Bathrooms']); ?></p>
+                                <p><i class="fas fa-car"></i> <?php echo htmlspecialchars($property['GarageSpace']); ?></p>
+                                <p><i class="fas fa-ruler-combined"></i> <?php echo htmlspecialchars($property['SquareMeters']); ?> m²</p>
+                            </div>
+                            <p><?php echo htmlspecialchars($property['City'] . ', ' . $property['Address']); ?></p>
+                            <a href="../Pages/Individual.php?PropertyID=<?php echo $property['PropertyID']; ?>" class="btn btn-primary">View Details</a>
+                        </div>
                     </div>
                 </div>
+                <?php endforeach; ?>
             </div>
-            <?php endforeach; ?>
         </div>
     </section>
 

@@ -81,61 +81,6 @@ body {
     color: black;
 }
 
-.filter-section {
-    padding: 30px;
-    background-color: #141414;
-    color: white;
-    text-align: center;
-}
-
-.filter-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.filters {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.filter-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 200px;
-}
-
-.filter-group select,
-.filter-group input[type="range"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    margin-top: 10px;
-}
-
-.filter-group label {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.filter-section .filter-group .btn {
-    margin-top: 5px; /* Adds a margin-top of 5px */
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.filter-section .filter-group .btn:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-}
-
 .properties-section {
     padding: 30px;
     background-color: #151616;
@@ -148,6 +93,7 @@ body {
     padding: 20px;
     justify-content: center;
     margin-left: 225px;
+}
 
 .property-card {
     background-color: #333; /* Dark background color */
@@ -160,7 +106,8 @@ body {
 
 .property-card img {
     width: 100%;
-    height: auto; /* Ensures image scaling */
+    height: auto;
+    max-height: 150px;
 }
 
 .card-info {
@@ -178,6 +125,13 @@ body {
 
 .card-info p {
     margin: 5px 0;
+}
+
+.col-md-4 {
+    margin: auto;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
 }
 
 .icons {

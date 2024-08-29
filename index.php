@@ -19,7 +19,7 @@ if (!$conn) {
 }
 
 // Query to get the first 3 properties
-$sql = "SELECT Title, State, Price, Bedrooms, Bathrooms, GarageSpace, SquareMeters, Address, City, ImageOne FROM properties WHERE PropertyID IN (1, 2, 3)";
+$sql = "SELECT PropertyID, Title, State, Price, Bedrooms, Bathrooms, GarageSpace, SquareMeters, Address, City, ImageOne FROM properties WHERE PropertyID IN (1, 2, 3)";
 $result = mysqli_query($conn, $sql);
 
 // Check if the query was successful
@@ -59,6 +59,9 @@ if (mysqli_num_rows($result) > 0) {
                 <li><a href="./Pages/Book.php">Book Agent</a></li>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
                 <li><a href="./Pages/AddProperty.php">Add Property</a></li>
+            <?php endif; ?>
+                <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'admin'): ?>
+                <li><a href="./Pages/AdminApproval.php">Approval</a></li>
             <?php endif; ?>
             </ul>
         </div>
@@ -122,6 +125,12 @@ if (mysqli_num_rows($result) > 0) {
                             <p><i class="fas fa-ruler-combined"></i> <?php echo htmlspecialchars($property['SquareMeters']); ?> m²</p>
                         </div>
                         <p><?php echo htmlspecialchars($property['City'] . ', ' . $property['Address']); ?></p>
+                        
+                        <!-- Add a button linking to the Individual.php page -->
+                        <div class="text-center mt-3">
+                        <a href="./Pages/Individual.php?PropertyID=<?php echo htmlspecialchars($property['PropertyID']); ?>" class="btn btn-primary">View Details</a>
+
+                        </div>
                     </div>
                 </div>
             </div>

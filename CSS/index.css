@@ -91,49 +91,24 @@ body {
     z-index: 2;
 }
 
-.ceo {
-    color: #ffffff;
-    position: relative;
-    left: 0;
-    top: 0;
-    z-index: 2;
-    height: 300px;
+.ceo-contain {
     width: 50%;
 }
 
-.ceo-contain {
-    width: 2000px;
-}
-
 .ceo-img {
-    position: absolute;
-    right: 150px;
-    top: 6%;
-    max-width: 350px;
-    z-index: 2;
-    margin-top: 600px;
-}
-
-.ceo h1 {
-    font-size: 48px;
-    margin: 0;
-    padding: 10px;
-    padding-left: 30px;
-}
-
-.ceo p {
-    max-width: 1000px;
-    font-size: 18px;
-    line-height: 1.6;
-    padding: 10px;
-    padding-left: 30px;
-    width: 100%;
+    height: 150px;
 }
 
 .ceo-img img {
-    width: 100%;
-    border-radius: 10px;
+    position: absolute;
+    bottom: -200px;
+    right: 20px;
+    z-index: 10;
+    width: 300px;
+    height: 400px;
+    border-radius: 5px;
 }
+
 .profile-section {
     padding: 40px 20px;
     text-align: center;
@@ -141,10 +116,6 @@ body {
     color: white;
     margin: 20px 0;
     border-radius: 10px;
-}
-
-.profile-section {
-    color: white;
 }
 
 .profile-section h2 {
@@ -197,18 +168,18 @@ body {
 
 .row {
     display: flex;
-    justify-content: space-between; /* Ensures space between the cards */
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .card {
-    background-color: #333; /* Dark background color */
-    color: white; /* White text */
+    background-color: #333;
+    color: white;
     border-radius: 8px;
-    overflow: hidden; /* Prevents content overflow */
+    overflow: hidden;
     margin-bottom: 20px;
-    width: 100%; /* Makes sure the cards occupy the same width */
-    max-width: 300px; /* Adjusts the maximum width of the card */
+    width: 100%;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -217,17 +188,17 @@ body {
 
 .card img {
     width: 100%;
-    height: auto; /* Ensures image scaling */
+    height: auto;
     max-height: 200px;
     object-fit: cover;
 }
 
 .card-info {
-    padding: 20px; /* Padding inside the card for text */
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: start; /* Aligns text to the left */
-    flex-grow: 1; /* Allow content to grow and take up space */
+    align-items: start;
+    flex-grow: 1;
     justify-content: space-between;
 }
 
@@ -249,7 +220,7 @@ body {
 }
 
 .icons i {
-    font-size: 24px; /* Adjust icon size */
+    font-size: 24px;
     margin-right: 10px;
 }
 
