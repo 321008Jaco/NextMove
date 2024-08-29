@@ -5,6 +5,54 @@ body, html {
     background-color: #151616;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.navbar .nav-center ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .nav-center ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.navbar .nav-center ul li a:hover {
+    text-decoration: underline;
+}
+
+.navbar .btn-warning {
+    font-size: 18px;
+    padding: 8px 20px;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
 .header {
     position: relative;
     color: white;

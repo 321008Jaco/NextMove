@@ -17,6 +17,26 @@ $stmt->bind_param("i", $propertyID);
 $stmt->execute();
 $result = $stmt->get_result();
 $property = $result->fetch_assoc();
+
+// Initialize availability message
+$availabilityMessage = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Fetch the property status
+    $status = $property['Status'];
+
+    // Determine the message based on the status
+    if ($status === 'available') {
+        $availabilityMessage = 'This property is available!';
+    } elseif ($status === 'pending') {
+        $availabilityMessage = 'This property is pending.';
+    } elseif ($status === 'sold') {
+        $availabilityMessage = 'This property has been sold.';
+    } else {
+        $availabilityMessage = 'Status is unknown.';
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +51,24 @@ $property = $result->fetch_assoc();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
+<nav class="navbar">
+        <div class="logo">Logo</div>
+        <div class="nav-center">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="./Pages/Properties.php">Properties</a></li>
+                <li><a href="./Pages/Book.php">Book Agent</a></li>
+                <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
+                <li><a href="./Pages/AddProperty.php">Add Property</a></li>
+            <?php endif; ?>
+                <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'admin'): ?>
+                <li><a href="./Pages/AdminApproval.php">Approval</a></li>
+            <?php endif; ?>
+            </ul>
+        </div>
+        <a href="logout.php" class="btn btn-warning">Logout</a>
+</nav>
 
 <div class="header">
     <div class="overlay"></div>
