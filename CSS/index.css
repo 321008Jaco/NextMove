@@ -91,6 +91,10 @@ body {
     z-index: 2;
 }
 
+.ceo-contain h1 {
+    color: white;
+}
+
 .ceo-contain {
     width: 50%;
 }

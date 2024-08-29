@@ -10,8 +10,8 @@ require_once "../database.php";
 // Get the PropertyID from the URL
 $propertyID = $_GET['PropertyID'];
 
-// Query to get the property details including the images
-$sql = "SELECT Title, State, Price, Bedrooms, Bathrooms, GarageSpace, SquareMeters, Address, City, ImageOne, ImageTwo, ImageThree, ImageFour FROM properties WHERE PropertyID = ?";
+// Query to get the property details including the images and status
+$sql = "SELECT Title, State, Price, Bedrooms, Bathrooms, GarageSpace, SquareMeters, Address, City, ImageOne, ImageTwo, ImageThree, ImageFour, Status FROM properties WHERE PropertyID = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $propertyID);
 $stmt->execute();
@@ -80,11 +80,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <span><i class="fas fa-parking"></i> <?php echo htmlspecialchars($property['GarageSpace']); ?> Parkings</span>
             <span><i class="fas fa-bath"></i> <?php echo htmlspecialchars($property['Bathrooms']); ?> Bathrooms</span>
         </div>
-        <button class="btn btn-primary">Check for Availability</button>
+        <form method="POST" style="display: inline-block;">
+            <button type="submit" class="btn btn-primary">Check for Availability</button>
+        </form>
     </div>
 </div>
 
 <div class="container my-4">
+    <!-- Display the availability message if the form has been submitted -->
+    <?php if ($availabilityMessage): ?>
+        <div class="alert alert-info">
+            <?php echo $availabilityMessage; ?>
+        </div>
+    <?php endif; ?>
+
     <div class="price-section">
         <h3>Price:</h3>
         <p><?php echo htmlspecialchars($property['Price']); ?></p>

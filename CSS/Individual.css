@@ -105,7 +105,8 @@ body, html {
 }
 
 .price-section, .description-section, .details-section, .gallery-section {
-    background-color: white;
+    background-color: rgb(44, 42, 42);
+    color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);

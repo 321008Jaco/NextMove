@@ -63,7 +63,13 @@ if (mysqli_num_rows($result) > 0) {
             <ul>
                 <li><a href="../index.php">Home</a></li>
                 <li><a href="#">Properties</a></li>
-                <li><a href="../Book.php">Book Agent</a></li>
+                <li><a href="../Pages/Book.php">Book Agent</a></li>
+                <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
+                <li><a href="./Pages/AddProperty.php">Add Property</a></li>
+            <?php endif; ?>
+                <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'admin'): ?>
+                <li><a href="./Pages/AdminApproval.php">Approval</a></li>
+            <?php endif; ?>
             </ul>
         </div>
         <a href="../logout.php" class="btn btn-warning">Logout</a>
