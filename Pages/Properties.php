@@ -8,6 +8,9 @@ if (!isset($_SESSION["user"])) {
 // Database connection
 require_once "../database.php"; // Assuming you have a separate file for database connection
 
+// Check user type
+$userType = $_SESSION['user_type'] ?? 'user'; // Default to 'user' if not set
+
 // Initialize variables for filtering
 $propertyType = $_GET['property-type'] ?? '';
 $bedrooms = $_GET['bedrooms'] ?? '';
@@ -20,6 +23,11 @@ $maxPrice = $_GET['max-price'] ?? '25000000';
 $sql = "SELECT PropertyID, Title, State, Price, Bedrooms, Bathrooms, GarageSpace, SquareMeters, Address, City, ImageOne 
         FROM properties 
         WHERE Price >= $minPrice AND Price <= $maxPrice";
+
+// If the user is a regular user, only show available and pending properties
+if ($userType === 'user') {
+    $sql .= " AND Status IN ('available', 'pending')";
+}
 
 // Add additional filters if provided
 if ($propertyType) {
@@ -68,7 +76,7 @@ if (mysqli_num_rows($result) > 0) {
                 <li><a href="./Pages/AddProperty.php">Add Property</a></li>
             <?php endif; ?>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'admin'): ?>
-                <li><a href="./Pages/AdminApproval.php">Approval</a></li>
+                <li><a href="../Pages/AdminApproval.php">Approval</a></li>
             <?php endif; ?>
             </ul>
         </div>

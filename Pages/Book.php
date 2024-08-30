@@ -23,10 +23,10 @@ if (!isset($_SESSION["user"])) {
                 <li><a href="../Pages/Properties.php">Properties</a></li>
                 <li><a href="#">Book Agent</a></li>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
-                <li><a href="./Pages/AddProperty.php">Add Property</a></li>
+                <li><a href="../Pages/AddProperty.php">Add Property</a></li>
             <?php endif; ?>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'admin'): ?>
-                <li><a href="./Pages/AdminApproval.php">Approval</a></li>
+                <li><a href="../Pages/AdminApproval.php">Approval</a></li>
             <?php endif; ?>
             </ul>
         </div>

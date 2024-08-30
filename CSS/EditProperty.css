@@ -1,0 +1,183 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #151616;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.header {
+    height: 20px;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.navbar .nav-center ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .nav-center ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.navbar .nav-center ul li a:hover {
+    text-decoration: underline;
+}
+
+.navbar .btn-warning {
+    font-size: 18px;
+    padding: 8px 20px;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.container {
+    background-color: #1b1f26;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 800px;
+    margin: 20px;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #cfd2d6;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group input[type="url"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background-color: #2b2f38;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group input[type="number"]::placeholder,
+.form-group textarea::placeholder,
+.form-group input[type="url"]::placeholder {
+    color: #888;
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background-color: #2b2f38;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.status-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-group label {
+    font-weight: bold;
+    color: #cfd2d6;
+    margin-right: 10px;
+}
+
+.status-group input[type="radio"] {
+    margin-right: 10px;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-save {
+    background-color: #007bff;
+    color: white;
+    flex: 1;
+    margin-right: 10px;
+}
+
+.btn-save:hover {
+    background-color: #0056b3;
+}
+
+.btn-cancel {
+    background-color: #dc3545;
+    color: white;
+    flex: 1;
+}
+
+.btn-cancel:hover {
+    background-color: #a71d2a;
+}

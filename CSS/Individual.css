@@ -104,6 +104,16 @@ body, html {
     margin-top: 20px;
 }
 
+.btn-secondary {
+    background-color: transparent;
+    border-color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    color: white;
+    margin-top: 20px;
+}
+
 .price-section, .description-section, .details-section, .gallery-section {
     background-color: rgb(44, 42, 42);
     color: white;
@@ -195,6 +205,45 @@ body, html {
 
 .reviews-section button:hover {
     background-color: #0056b3; /* Darker blue on hover */
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: #f7d106;
+}
+
+.star-rating input[type="radio"]:checked ~ label:hover,
+.star-rating input[type="radio"]:checked ~ label:hover ~ label {
+    color: #f7d106;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f7d106;
+}
+
+.star.filled {
+    color: #f7d106;
+}
+
+.star {
+    font-size: 1.5rem;
+    color: #ddd;
 }
 
 .gallery-section .image-placeholder {

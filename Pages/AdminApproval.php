@@ -84,9 +84,30 @@ if (mysqli_num_rows($result) > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Approval</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../CSS/admin.css"> <!-- Add your admin-specific CSS file here -->
+    <link rel="stylesheet" href="../CSS/AdminApproval.css"> <!-- Add your admin-specific CSS file here -->
 </head>
 <body>
+
+    <nav class="navbar">
+            <div class="logo">Logo</div>
+            <div class="nav-center">
+                <ul>
+                    <li><a href="../index.php">Home</a></li>
+                    <li><a href="../Pages/Properties.php">Properties</a></li>
+                    <li><a href="../Pages/Book.php">Book Agent</a></li>
+                    <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
+                    <li><a href="./Pages/AddProperty.php">Add Property</a></li>
+                <?php endif; ?>
+                    <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'admin'): ?>
+                    <li><a href="./Pages/AdminApproval.php">Approval</a></li>
+                <?php endif; ?>
+                </ul>
+            </div>
+            <a href="../logout.php" class="btn btn-warning">Logout</a>
+    </nav>
+
+    <div class="header"></div>
+
     <div class="container">
         <h1>Pending Property Approvals</h1>
 

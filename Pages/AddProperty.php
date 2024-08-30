@@ -47,11 +47,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Property</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../CSS/addproperty.css">
+    <link rel="stylesheet" href="../CSS/AddProperty.css">
     <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
+    <nav class="navbar">
+            <div class="logo">Logo</div>
+            <div class="nav-center">
+                <ul>
+                    <li><a href="../index.php">Home</a></li>
+                    <li><a href="../Pages/Properties.php">Properties</a></li>
+                    <li><a href="../Pages/Book.php">Book Agent</a></li>
+                    <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
+                    <li><a href="../Pages/AddProperty.php">Add Property</a></li>
+                <?php endif; ?>
+                    <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'admin'): ?>
+                    <li><a href="../Pages/AdminApproval.php">Approval</a></li>
+                <?php endif; ?>
+                </ul>
+            </div>
+            <a href="../logout.php" class="btn btn-warning">Logout</a>
+    </nav>
+
     <div class="container">
         <h1>Add Property</h1>
         <form action="AddProperty.php" method="POST">

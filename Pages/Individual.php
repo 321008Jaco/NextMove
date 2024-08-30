@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Query to get reviews for the property
-$reviewSql = "SELECT ReviewText, full_name, Time FROM review JOIN users ON review.id = users.id WHERE review.ProperyID = ? ORDER BY Time DESC";
+$reviewSql = "SELECT ReviewText, full_name, Time, Rating FROM review JOIN users ON review.id = users.id WHERE review.property_id = ? ORDER BY Time DESC";
 $reviewStmt = $conn->prepare($reviewSql);
 $reviewStmt->bind_param("i", $propertyID);
 $reviewStmt->execute();
@@ -63,17 +63,17 @@ $reviews = $reviewStmt->get_result();
         <div class="nav-center">
             <ul>
                 <li><a href="../index.php">Home</a></li>
-                <li><a href="./Pages/Properties.php">Properties</a></li>
-                <li><a href="./Pages/Book.php">Book Agent</a></li>
+                <li><a href="../Pages/Properties.php">Properties</a></li>
+                <li><a href="../Pages/Book.php">Book Agent</a></li>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
-                <li><a href="./Pages/AddProperty.php">Add Property</a></li>
+                <li><a href="../Pages/AddProperty.php">Add Property</a></li>
             <?php endif; ?>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'admin'): ?>
-                <li><a href="./Pages/AdminApproval.php">Approval</a></li>
+                <li><a href="../Pages/AdminApproval.php">Approval</a></li>
             <?php endif; ?>
             </ul>
         </div>
-        <a href="logout.php" class="btn btn-warning">Logout</a>
+        <a href="../logout.php" class="btn btn-warning">Logout</a>
 </nav>
 
 <div class="header">
@@ -89,6 +89,19 @@ $reviews = $reviewStmt->get_result();
         <form method="POST" style="display: inline-block;">
             <button type="submit" class="btn btn-primary">Check for Availability</button>
         </form>
+        <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'admin'): ?>
+        <form method="GET" action="../Pages/EditProperty.php" style="display: inline-block;">
+            <input type="hidden" name="PropertyID" value="<?php echo $propertyID; ?>">
+            <button type="submit" class="btn btn-secondary">Edit Property</button>
+        </form>
+    <?php endif; ?>
+    <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'user'): ?>
+        <form method="GET" action="../Pages/BuyProperty.php" style="display: inline-block;">
+            <input type="hidden" name="PropertyID" value="<?php echo $propertyID; ?>">
+            <button type="submit" class="btn btn-secondary">Buy Property</button>
+        </form>
+    <?php endif; ?>
+    </div>
     </div>
 </div>
 
@@ -134,12 +147,41 @@ $reviews = $reviewStmt->get_result();
             <div class="review">
                 <p><strong><?php echo htmlspecialchars($review['full_name']); ?></strong> (<?php echo $review['Time']; ?>)</p>
                 <p><?php echo htmlspecialchars($review['ReviewText']); ?></p>
+                <p>
+                    <?php
+                    // Display the stars based on the rating
+                    for ($i = 1; $i <= 5; $i++) {
+                        if ($i <= $review['Rating']) {
+                            echo '★'; // Filled star
+                        } else {
+                            echo '☆'; // Empty star
+                        }
+                    }
+                    ?>
+                </p>
             </div>
             <hr>
         <?php endwhile; ?>
 
         <!-- Form to submit a new review -->
         <form method="POST" action="AddReview.php" class="mt-4">
+            <div class="rating">
+                <label>
+                    <input type="radio" name="rating" value="1"> ★
+                </label>
+                <label>
+                    <input type="radio" name="rating" value="2"> ★★
+                </label>
+                <label>
+                    <input type="radio" name="rating" value="3"> ★★★
+                </label>
+                <label>
+                    <input type="radio" name="rating" value="4"> ★★★★
+                </label>
+                <label>
+                    <input type="radio" name="rating" value="5"> ★★★★★
+                </label>
+            </div>
             <div class="mb-3">
                 <label for="reviewText" class="form-label">Add a Review:</label>
                 <textarea class="form-control" id="reviewText" name="reviewText" rows="3" required></textarea>

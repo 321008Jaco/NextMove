@@ -91,21 +91,22 @@ body {
     z-index: 2;
 }
 
-.ceo-contain h1 {
+.ceo-contain h1, p {
     color: white;
 }
 
 .ceo-contain {
     width: 50%;
+    padding: 20px;
 }
 
 .ceo-img {
-    height: 150px;
+    height: 50px;
 }
 
 .ceo-img img {
     position: absolute;
-    bottom: -200px;
+    bottom: -250px;
     right: 20px;
     z-index: 10;
     width: 300px;

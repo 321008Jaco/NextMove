@@ -245,6 +245,7 @@ input[type="range"]::-ms-thumb {
 }
 
 button[type="submit"] {
+    margin-left: 46%;
     justify-content: center;
     display: flex;
     background-color: #007bff;
