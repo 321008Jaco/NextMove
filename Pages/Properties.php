@@ -76,6 +76,7 @@ if (mysqli_num_rows($result) > 0) {
     </nav>
 
     <section class="hero-section">
+        <div class="overlay"></div>
         <div class="hero-content">
             <h1>Welcome</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt nulla ut quam pulvinar, sed congue orci eleifend. Nulla facilisi. Maecenas et facilisis justo.</p>
@@ -91,7 +92,7 @@ if (mysqli_num_rows($result) > 0) {
                     <label for="property-type">Property Type</label>
                     <select id="property-type" name="property-type">
                         <option value="">Any</option>
-                        <option value="house" <?= $propertyType == 'house' ? 'selected' : '' ?>>House</option>
+                        <option value="home" <?= $propertyType == 'home' ? 'selected' : '' ?>>Home</option>
                         <option value="apartment" <?= $propertyType == 'apartment' ? 'selected' : '' ?>>Apartment</option>
                         <option value="office" <?= $propertyType == 'office' ? 'selected' : '' ?>>Office</option>
                     </select>

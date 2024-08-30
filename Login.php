@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION["user"])) {
+if (isset($_SESSION["user_id"])) {
     header("Location: index.php");
     exit();
 }
@@ -30,6 +30,8 @@ if (isset($_SESSION["user"])) {
             if ($user) {
                 if (password_verify($password, $user["password"])) {
                     // Store user type in session
+                    $_SESSION["user_name"] = $user["full_name"];
+                    $_SESSION["user_id"] = $user["id"];
                     $_SESSION["user"] = $user["Type"];
                     header("Location: index.php");
                     die();

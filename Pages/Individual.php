@@ -37,6 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Query to get reviews for the property
+$reviewSql = "SELECT ReviewText, full_name, Time FROM review JOIN users ON review.id = users.id WHERE review.ProperyID = ? ORDER BY Time DESC";
+$reviewStmt = $conn->prepare($reviewSql);
+$reviewStmt->bind_param("i", $propertyID);
+$reviewStmt->execute();
+$reviews = $reviewStmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="logo">Logo</div>
         <div class="nav-center">
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="../index.php">Home</a></li>
                 <li><a href="./Pages/Properties.php">Properties</a></li>
                 <li><a href="./Pages/Book.php">Book Agent</a></li>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
@@ -119,6 +125,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="col-md-4"><i class="fas fa-bath"></i> Bathrooms: <?php echo htmlspecialchars($property['Bathrooms']); ?></div>
             <div class="col-md-4"><i class="fas fa-warehouse"></i> Garages: <?php echo htmlspecialchars($property['GarageSpace']); ?></div>
         </div>
+    </div>
+
+    <div class="reviews-section my-4">
+        <h3>Reviews:</h3>
+        <!-- Display existing reviews -->
+        <?php while ($review = $reviews->fetch_assoc()): ?>
+            <div class="review">
+                <p><strong><?php echo htmlspecialchars($review['full_name']); ?></strong> (<?php echo $review['Time']; ?>)</p>
+                <p><?php echo htmlspecialchars($review['ReviewText']); ?></p>
+            </div>
+            <hr>
+        <?php endwhile; ?>
+
+        <!-- Form to submit a new review -->
+        <form method="POST" action="AddReview.php" class="mt-4">
+            <div class="mb-3">
+                <label for="reviewText" class="form-label">Add a Review:</label>
+                <textarea class="form-control" id="reviewText" name="reviewText" rows="3" required></textarea>
+            </div>
+            <input type="hidden" name="propertyID" value="<?php echo $propertyID; ?>">
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
     </div>
 
     <div class="gallery-section my-4">
