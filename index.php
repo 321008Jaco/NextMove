@@ -5,10 +5,7 @@ if (!isset($_SESSION["user"])) {
     exit();
 }
 
-// Debugging: Display the session variables
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
+
 
 // Database connection
 require_once "database.php"; // Assuming you have a separate file for database connection
@@ -51,33 +48,42 @@ if (mysqli_num_rows($result) > 0) {
 </head>
 <body>
 <nav class="navbar">
-        <div class="logo">Logo</div>
-        <div class="nav-center">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="./Pages/Properties.php">Properties</a></li>
-                <li><a href="./Pages/Book.php">Book Agent</a></li>
-                <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
-                <li><a href="./Pages/AddProperty.php">Add Property</a></li>
+    <div class="logo">
+        <a href="#">
+            <img src="./Assets/logo.png" alt="Logo" style="height: 60px;">
+        </a>
+    </div>
+    <div class="nav-center">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="./Pages/Properties.php">Properties</a></li>
+            <li><a href="./Pages/Book.php">Book Agent</a></li>
+            <li><a href="./Pages/Morgage.php">Morgage Calculator</a></li>
+            <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
+            <li><a href="./Pages/AddProperty.php">Add Property</a></li>
             <?php endif; ?>
-                <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'admin'): ?>
-                <li><a href="./Pages/AdminApproval.php">Approval</a></li>
+            <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'admin'): ?>
+            <li><a href="./Pages/AdminApproval.php">Approval</a></li>
             <?php endif; ?>
-            </ul>
-        </div>
-        <a href="logout.php" class="btn btn-warning">Logout</a>
+        </ul>
+    </div>
+    <a href="logout.php" class="btn btn-warning">Logout</a>
 </nav>
 
 <div class="hero-section">
     <div class="overlay"></div>
-    <div class="content"></div>
+    <div class="hero-content">
+            <h1>Welcome</h1>
+            <p>Welcome to NextMove, where your dream home awaits. We are dedicated to helping you find the perfect property that suits your lifestyle and needs, with a wide range of options and expert guidance every step of the way.</p>
+
+        </div>
 </div>
 
 <div class="ceo">
     <div class="ceo-contain">
         <h1>Richard Thompson</h1>
-        <p>Richard Thompson is a visionary leader with over 20 years of experience in the real estate industry. As the CEO of Elysian Haven, he has transformed the company into a leading force in luxury property development, focusing on delivering dream homes with exceptional quality and design.</p>
-        <p>Under Richard's leadership, Elysian Haven continues to set new standards in real estate, making it the go-to choice for discerning homeowners.</p>
+        <p>Richard Thompson is a visionary leader with over 20 years of experience in the real estate industry. As the CEO of NextMove, he has transformed the company into a leading force in luxury property development, focusing on delivering dream homes with exceptional quality and design.</p>
+        <p>Under Richard's leadership, NextMove continues to set new standards in real estate, making it the go-to choice for discerning homeowners.</p>
     </div>
 </div>
 <div class="ceo-img">
@@ -86,8 +92,7 @@ if (mysqli_num_rows($result) > 0) {
 
 <div class="profile-section">
     <div>
-        <h2>Tell us about your dream home</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <h2>What Are You Looking For?</h2>
     </div>
     <div class="d-flex justify-content-between mt-4">
         <div class="img-button">
@@ -144,8 +149,25 @@ if (mysqli_num_rows($result) > 0) {
     </div>
 </div>
 
-<div class="footer">
-    <p>Footer</p>
-</div>
+<footer class="footer">
+    <div class="social-container">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <ul class="footer-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Our Team</a></li>
+    </ul>
+    <div class="footer-bottom">
+        <p>&copy; 2024; Designed by <span>Jaco Mostert</span></p>
+    </div>
+</footer>
+
 </body>
 </html>

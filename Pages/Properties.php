@@ -66,12 +66,17 @@ if (mysqli_num_rows($result) > 0) {
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">Logo</div>
+    <div class="logo">
+        <a href="#">
+            <img src="../Assets/Logo.png" alt="Logo" style="height: 60px;">
+        </a>
+    </div>
         <div class="nav-center">
             <ul>
                 <li><a href="../index.php">Home</a></li>
                 <li><a href="#">Properties</a></li>
                 <li><a href="../Pages/Book.php">Book Agent</a></li>
+                <li><a href="../Pages/Morgage.php">Morgage Calculator</a></li>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
                 <li><a href="./Pages/AddProperty.php">Add Property</a></li>
             <?php endif; ?>
@@ -87,8 +92,7 @@ if (mysqli_num_rows($result) > 0) {
         <div class="overlay"></div>
         <div class="hero-content">
             <h1>Welcome</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt nulla ut quam pulvinar, sed congue orci eleifend. Nulla facilisi. Maecenas et facilisis justo.</p>
-            <p>Integer imperdiet nibh id metus faucibus, sit amet dictum justo fermentum. Suspendisse potenti. Vivamus euismod fringilla dolor.</p>
+            <p>Explore a curated selection of properties tailored to meet your unique needs and preferences. Whether you're searching for your dream home or an ideal investment, our listings provide detailed information to help you make the best decision.</p>
         </div>
     </section>
 
@@ -178,9 +182,25 @@ if (mysqli_num_rows($result) > 0) {
         </div>
     </section>
 
-    <footer>
-        Footer Content Here
-    </footer>
+    <footer class="footer">
+    <div class="social-container">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <ul class="footer-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Our Team</a></li>
+    </ul>
+    <div class="footer-bottom">
+        <p>&copy; 2024; Designed by <span>Jaco Mostert</span></p>
+    </div>
+</footer>
 
     <script>
     function updateMinPrice(value) {

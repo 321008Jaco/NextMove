@@ -45,12 +45,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
     <nav class="navbar">
-            <div class="logo">Logo</div>
+    <div class="logo">
+        <a href="#">
+            <img src="../Assets/Logo.png" alt="Logo" style="height: 60px;">
+        </a>
+    </div>
             <div class="nav-center">
                 <ul>
                     <li><a href="../index.php">Home</a></li>
                     <li><a href="../Pages/Properties.php">Properties</a></li>
                     <li><a href="../Pages/Book.php">Book Agent</a></li>
+                    <li><a href="../Pages/Morgage.php">Morgage Calculator</a></li>
                     <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
                     <li><a href="../Pages/AddProperty.php">Add Property</a></li>
                 <?php endif; ?>
@@ -78,6 +83,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="Individual.php?PropertyID=<?php echo $propertyID; ?>" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
+
+<footer class="footer">
+    <div class="social-container">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <ul class="footer-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Our Team</a></li>
+    </ul>
+    <div class="footer-bottom">
+        <p>&copy; 2024; Designed by <span>Jaco Mostert</span></p>
+    </div>
+</footer>
 
 </body>
 </html>
