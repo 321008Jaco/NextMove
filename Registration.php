@@ -23,7 +23,7 @@ if (isset($_POST["submit"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
     $passwordRepeat = $_POST["repeat_password"];
-    $userType = $_POST["Type"]; // Corrected variable name
+    $userType = $_POST["Type"];
 
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -61,10 +61,10 @@ if (isset($_POST["submit"])) {
             echo "<div class='alert alert-danger'>$error</div>";
         }
     } else {
-        $sql = "INSERT INTO users (full_name, email, password, Type) VALUES (?, ?, ?, ?)"; // Updated column name
+        $sql = "INSERT INTO users (full_name, email, password, Type) VALUES (?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
         if (mysqli_stmt_prepare($stmt, $sql)) {
-            mysqli_stmt_bind_param($stmt, "ssss", $fullName, $email, $passwordHash, $userType); // Corrected binding
+            mysqli_stmt_bind_param($stmt, "ssss", $fullName, $email, $passwordHash, $userType);
             mysqli_stmt_execute($stmt);
             echo "<div class='alert alert-success'>You are registered successfully!</div>";
         } else {
@@ -80,9 +80,8 @@ if (isset($_POST["submit"])) {
                 <input type="email" name="email" placeholder="Email:" class="form-control">
             </div>
 
-            <!-- User Type Buttons -->
             <div class="form-group user-type-group">
-                <label class="user-type-label">Select User Type:</label>
+                <label class="user-type-label">Select User Type:</label><br>
                 <div class="user-type-options">
                     <label><input type="radio" name="Type" value="user" required> User</label>
                     <label><input type="radio" name="Type" value="agent" required> Agent</label>

@@ -6,10 +6,9 @@ if (!isset($_SESSION["user"])) {
 }
 
 // Database connection
-require_once "../database.php"; // Assuming you have a separate file for database connection
+require_once "../database.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect form data
     $title = $_POST["title"];
     $description = $_POST["description"];
     $price = $_POST["price"];
@@ -26,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imageTwo = $_POST["imageTwo"];
     $imageThree = $_POST["imageThree"];
     $imageFour = $_POST["imageFour"];
-    $agentID = $_SESSION["user_id"]; // Assuming agent ID is stored in session
+    $agentID = $_SESSION["user_id"];
 
     // Insert property into the pendingproperties table
     $sql = "INSERT INTO pendingproperties (Title, Description, Price, Address, City, State, Zipcode, PropertyType, Status, AgentID, GarageSpace, Bedrooms, Bathrooms, SquareMeters, ImageOne, ImageTwo, ImageThree, ImageFour)
@@ -48,7 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Add Property</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../CSS/AddProperty.css">
-    <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -64,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <li><a href="../index.php">Home</a></li>
                     <li><a href="../Pages/Properties.php">Properties</a></li>
                     <li><a href="../Pages/Book.php">Book Agent</a></li>
-                    <li><a href="../Pages/Morgage.php">Morgage Calculator</a></li>
+                    <li><a href="../Pages/Mortgage.php">Morgage Calculator</a></li>
                     <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
                     <li><a href="../Pages/AddProperty.php">Add Property</a></li>
                 <?php endif; ?>

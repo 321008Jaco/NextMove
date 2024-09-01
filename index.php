@@ -8,7 +8,7 @@ if (!isset($_SESSION["user"])) {
 
 
 // Database connection
-require_once "database.php"; // Assuming you have a separate file for database connection
+require_once "database.php";
 
 // Check if the connection is successful
 if (!$conn) {
@@ -43,7 +43,6 @@ if (mysqli_num_rows($result) > 0) {
     <title>Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./CSS/index.css">
-    <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -58,7 +57,7 @@ if (mysqli_num_rows($result) > 0) {
             <li><a href="#">Home</a></li>
             <li><a href="./Pages/Properties.php">Properties</a></li>
             <li><a href="./Pages/Book.php">Book Agent</a></li>
-            <li><a href="./Pages/Morgage.php">Morgage Calculator</a></li>
+            <li><a href="./Pages/Morgage.php">Mortgage Calculator</a></li>
             <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
             <li><a href="./Pages/AddProperty.php">Add Property</a></li>
             <?php endif; ?>
@@ -131,7 +130,6 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
                         <p><?php echo htmlspecialchars($property['City'] . ', ' . $property['Address']); ?></p>
                         
-                        <!-- Add a button linking to the Individual.php page -->
                         <div class="text-center mt-3">
                         <a href="./Pages/Individual.php?PropertyID=<?php echo htmlspecialchars($property['PropertyID']); ?>" class="btn btn-primary">View Details</a>
 

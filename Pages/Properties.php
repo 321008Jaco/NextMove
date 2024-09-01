@@ -6,10 +6,10 @@ if (!isset($_SESSION["user"])) {
 }
 
 // Database connection
-require_once "../database.php"; // Assuming you have a separate file for database connection
+require_once "../database.php";
 
 // Check user type
-$userType = $_SESSION['user_type'] ?? 'user'; // Default to 'user' if not set
+$userType = $_SESSION['user_type'] ?? 'user';
 
 // Initialize variables for filtering
 $propertyType = $_GET['property-type'] ?? '';
@@ -61,7 +61,6 @@ if (mysqli_num_rows($result) > 0) {
     <title>Properties</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../CSS/Properties.css">
-    <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -76,7 +75,7 @@ if (mysqli_num_rows($result) > 0) {
                 <li><a href="../index.php">Home</a></li>
                 <li><a href="#">Properties</a></li>
                 <li><a href="../Pages/Book.php">Book Agent</a></li>
-                <li><a href="../Pages/Morgage.php">Morgage Calculator</a></li>
+                <li><a href="../Pages/Morgage.php">Mortgage Calculator</a></li>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
                 <li><a href="./Pages/AddProperty.php">Add Property</a></li>
             <?php endif; ?>

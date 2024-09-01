@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $updateStmt = $conn->prepare($updateSql);
     $updateStmt->bind_param("i", $propertyID);
     if ($updateStmt->execute()) {
-        // Redirect to a confirmation page or back to the property page
         header("Location: ../Pages/individual.php?PropertyID=" . $propertyID);
         exit();
     } else {
@@ -55,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <li><a href="../index.php">Home</a></li>
                     <li><a href="../Pages/Properties.php">Properties</a></li>
                     <li><a href="../Pages/Book.php">Book Agent</a></li>
-                    <li><a href="../Pages/Morgage.php">Morgage Calculator</a></li>
+                    <li><a href="../Pages/Morgage.php">Mortgage Calculator</a></li>
                     <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
                     <li><a href="../Pages/AddProperty.php">Add Property</a></li>
                 <?php endif; ?>

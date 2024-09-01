@@ -11,7 +11,7 @@ body, html {
 
 .container {
     position: relative;
-    background-image: linear-gradient(to left, rgba(27, 31, 38, 0.8), rgba(27, 31, 38, 0.4)), url('../Assets/Reg.jpg'); /* Replace with your image path */
+    background-image: linear-gradient(to left, rgba(27, 31, 38, 0.8), rgba(27, 31, 38, 0.4)), url('../Assets/Reg.jpg');
     background-size: cover;
     background-position: center;
     padding: 50px;

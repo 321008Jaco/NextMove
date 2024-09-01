@@ -59,7 +59,7 @@ if (isset($_SESSION["user_id"])) {
         </form>
 
         <div class="logo">
-            <img src="./Assets/logo.png" alt="Logo"> <!-- Replace with the correct path to your logo image -->
+            <img src="./Assets/logo.png" alt="Logo">
         </div>
 
     </div>

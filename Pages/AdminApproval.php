@@ -6,7 +6,7 @@ if (!isset($_SESSION["user"])) {
 }
 
 // Database connection
-require_once "../database.php"; // Assuming you have a separate file for database connection
+require_once "../database.php";
 
 // Handle approval or rejection
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $property = mysqli_fetch_assoc($result);
 
         if ($property) {
-            // Insert the property into the properties table
             $insert_sql = "INSERT INTO properties (Title, Description, Price, Address, City, State, Zipcode, PropertyType, Status, AgentID, UserID, GarageSpace, Bedrooms, Bathrooms, SquareMeters, ImageOne, ImageTwo, ImageThree, ImageFour) 
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'available', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = mysqli_prepare($conn, $insert_sql);
@@ -49,14 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             );
             mysqli_stmt_execute($stmt);
 
-            // Delete the property from pendingproperties after approval
+            // Delete the property after approval
             $delete_sql = "DELETE FROM pendingproperties WHERE PendingID = ?";
             $stmt = mysqli_prepare($conn, $delete_sql);
             mysqli_stmt_bind_param($stmt, 'i', $pendingID);
             mysqli_stmt_execute($stmt);
         }
     } elseif ($action === 'reject') {
-        // Reject the property by updating the status
         $sql = "UPDATE pendingproperties SET Status = 'rejected' WHERE PendingID = ?";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, 'i', $pendingID);
@@ -84,7 +82,7 @@ if (mysqli_num_rows($result) > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Approval</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../CSS/AdminApproval.css"> <!-- Add your admin-specific CSS file here -->
+    <link rel="stylesheet" href="../CSS/AdminApproval.css">
 </head>
 <body>
 
@@ -99,7 +97,7 @@ if (mysqli_num_rows($result) > 0) {
                     <li><a href="../index.php">Home</a></li>
                     <li><a href="../Pages/Properties.php">Properties</a></li>
                     <li><a href="../Pages/Book.php">Book Agent</a></li>
-                    <li><a href="../Pages/Morgage.php">Morgage Calculator</a></li>
+                    <li><a href="../Pages/Morgage.php">Mortgage Calculator</a></li>
                     <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
                     <li><a href="./Pages/AddProperty.php">Add Property</a></li>
                 <?php endif; ?>

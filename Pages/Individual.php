@@ -10,7 +10,7 @@ require_once "../database.php";
 // Get the PropertyID from the URL
 $propertyID = $_GET['PropertyID'];
 
-// Query to get the property details including the images and status
+// Query to get the property details\
 $sql = "SELECT Title, State, Price, Bedrooms, Bathrooms, GarageSpace, SquareMeters, Address, City, ImageOne, ImageTwo, ImageThree, ImageFour, Status FROM properties WHERE PropertyID = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $propertyID);
@@ -53,7 +53,6 @@ $reviews = $reviewStmt->get_result();
     <title>Individual Property</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../CSS/individual.css">
-    <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -69,7 +68,7 @@ $reviews = $reviewStmt->get_result();
                 <li><a href="../index.php">Home</a></li>
                 <li><a href="../Pages/Properties.php">Properties</a></li>
                 <li><a href="../Pages/Book.php">Book Agent</a></li>
-                <li><a href="../Pages/Morgage.php">Morgage Calculator</a></li>
+                <li><a href="../Pages/Morgage.php">Mortgage Calculator</a></li>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
                 <li><a href="../Pages/AddProperty.php">Add Property</a></li>
             <?php endif; ?>
@@ -111,7 +110,6 @@ $reviews = $reviewStmt->get_result();
 </div>
 
 <div class="container my-4">
-    <!-- Display the availability message if the form has been submitted -->
     <?php if ($availabilityMessage): ?>
         <div class="alert alert-info">
             <?php echo $availabilityMessage; ?>
@@ -147,19 +145,17 @@ $reviews = $reviewStmt->get_result();
 
     <div class="reviews-section my-4">
         <h3>Reviews:</h3>
-        <!-- Display existing reviews -->
         <?php while ($review = $reviews->fetch_assoc()): ?>
             <div class="review">
                 <p><strong><?php echo htmlspecialchars($review['full_name']); ?></strong> (<?php echo $review['Time']; ?>)</p>
                 <p><?php echo htmlspecialchars($review['ReviewText']); ?></p>
                 <p>
                     <?php
-                    // Display the stars based on the rating
                     for ($i = 1; $i <= 5; $i++) {
                         if ($i <= $review['Rating']) {
-                            echo '★'; // Filled star
+                            echo '★';
                         } else {
-                            echo '☆'; // Empty star
+                            echo '☆';
                         }
                     }
                     ?>
@@ -168,7 +164,6 @@ $reviews = $reviewStmt->get_result();
             <hr>
         <?php endwhile; ?>
 
-        <!-- Form to submit a new review -->
         <form method="POST" action="AddReview.php" class="mt-4">
             <div class="rating">
                 <label>
@@ -198,7 +193,6 @@ $reviews = $reviewStmt->get_result();
 
     <div class="gallery-section my-4">
         <div class="row">
-            <!-- Display the images from the database -->
             <?php if (!empty($property['ImageTwo'])): ?>
             <div class="col-md-3">
                 <img src="<?php echo htmlspecialchars($property['ImageTwo']); ?>" class="img-fluid" alt="Property Image Two">

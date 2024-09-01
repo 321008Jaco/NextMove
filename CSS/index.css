@@ -116,6 +116,7 @@ body {
 
 .ceo-img img {
     position: absolute;
+    margin-top: 500px;
     bottom: -250px;
     right: 20px;
     z-index: 10;

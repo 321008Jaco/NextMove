@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
     if ($stmt->execute()) {
         $submitted = true;
-        header("Location: Book.php"); // Redirect to avoid form resubmission
+        header("Location: Book.php");
         exit();
     } else {
         echo "Error: " . $stmt->error;
@@ -65,7 +65,7 @@ $bookings = $bookingsStmt->get_result();
             <li><a href="../index.php">Home</a></li>
             <li><a href="../Pages/Properties.php">Properties</a></li>
             <li><a href="#">Book Agent</a></li>
-            <li><a href="../Pages/Morgage.php">Morgage Calculator</a></li>
+            <li><a href="../Pages/Morgage.php">Mortgage Calculator</a></li>
             <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
                 <li><a href="../Pages/AddProperty.php">Add Property</a></li>
             <?php endif; ?>

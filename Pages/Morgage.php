@@ -8,8 +8,8 @@ if (!isset($_SESSION["user"])) {
 $monthlyPayment = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $loanAmount = $_POST['loanAmount'];
-    $interestRate = $_POST['interestRate'] / 100 / 12; // Convert annual interest rate to monthly
-    $loanTerm = $_POST['loanTerm'] * 12; // Convert years to months
+    $interestRate = $_POST['interestRate'] / 100 / 12;
+    $loanTerm = $_POST['loanTerm'] * 12;
 
     // Calculate the monthly payment
     $x = pow(1 + $interestRate, $loanTerm);
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <li><a href="../index.php">Home</a></li>
             <li><a href="../Pages/Properties.php">Properties</a></li>
             <li><a href="../Pages/Book.php">Book Agent</a></li>
-            <li><a href="#">Morgage Calculator</a></li>
+            <li><a href="#">Mortgage Calculator</a></li>
             <?php if (isset($_SESSION["user"]) && $_SESSION["user"] === 'agent'): ?>
             <li><a href="../Pages/AddProperty.php">Add Property</a></li>
             <?php endif; ?>
