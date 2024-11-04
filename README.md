@@ -147,6 +147,14 @@ NextMove is a full-featured real estate platform that allows users to browse ava
 
 https://drive.google.com/drive/folders/1wx3p2KQOffNXvSSh6Lo0dydpCjzYnS34?usp=sharing
 
+### Open Brief Proposal
+
+[JacoMostert_DV200 - Open Brief Proposal (1).pdf](https://github.com/user-attachments/files/17624298/JacoMostert_DV200.-.Open.Brief.Proposal.1.pdf)
+
+### Progress Check Document
+
+[Jaco Mostert 231008_DV200 T4 - Progress Milestone Check.pdf](https://github.com/user-attachments/files/17624317/Jaco.Mostert.231008_DV200.T4.-.Progress.Milestone.Check.pdf)
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
